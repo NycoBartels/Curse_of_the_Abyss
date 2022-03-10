@@ -59,6 +59,11 @@ namespace StarterAssets
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
 
+		// COMBAT
+		[Header("Combat")]
+		[Tooltip("Light Orb prefab goes in here")]
+		public GameObject lightOrb;
+
 		// cinemachine
 		private float _cinemachineTargetYaw;
 		private float _cinemachineTargetPitch;
@@ -120,6 +125,8 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
+			Magic();
 		}
 
 		private void LateUpdate()
@@ -314,5 +321,19 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		// ####### COMBAT ###########
+
+		private void Magic() {
+			//TO DO: restrict magic use based on timer
+			// - only set amount of light orbs alive at any given time
+			if (_input.magic) {
+				print("I FIRE LIGHTAAAAAAAH");
+				var newLightOrb = Instantiate(lightOrb, transform);
+				newLightOrb.transform.parent = null;
+				_input.magic = false;
+            }
+        }
+	
 	}
 }
