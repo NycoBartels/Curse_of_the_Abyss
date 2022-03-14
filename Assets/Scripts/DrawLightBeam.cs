@@ -5,23 +5,24 @@ using UnityEngine;
 public class DrawLightBeam : MonoBehaviour
 {
     [SerializeField] private float lightReach;
+    [SerializeField] private GameObject lineRenderer;
     private (Vector3, Vector3) lightData;
-    //private LineRenderer lineRenderer;
-    private Vector3[] lightHitPoints;
-    private int hitPointsNo = 0;
+    private Vector3 startPosition;
+    private List<LineRenderer> lines = new List<LineRenderer>();
 
 
+    private void Awake()
+    {
 
+    }
 
     void Start()
     {
 
         lightData = ReflectBeam(transform.position + transform.forward * 0.075f, transform.forward);
-        //LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+        startPosition = transform.position;
 
-        //lightHitPoints[0] = transform.position;
-        //lightHitPoints[1] = transform.position + transform.forward * 0.75f;
-
+        
     }
 
 
@@ -29,8 +30,7 @@ public class DrawLightBeam : MonoBehaviour
     {
 
         lightData = ReflectBeam(lightData.Item1, lightData.Item2);
-        //lineRenderer.SetPositions(lightHitPoints);
-
+        print(startPosition);
 
 
     }
@@ -39,9 +39,8 @@ public class DrawLightBeam : MonoBehaviour
     private (Vector3, Vector3) ReflectBeam(Vector3 position, Vector3 direction)
     {
         
-        Ray lightBeam = new Ray(position, direction * lightReach);
-        Debug.DrawRay(position, direction * lightReach, Color.blue);
-        print(lightBeam);
+        Ray lightBeam = new Ray(position, direction * lightReach * Time.deltaTime);
+        Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.blue);
         RaycastHit hit;
 
 
@@ -49,20 +48,53 @@ public class DrawLightBeam : MonoBehaviour
         {
             direction = Vector3.Reflect(direction, hit.normal);
             position = hit.point;
-            Debug.DrawRay(position, direction * lightReach, Color.red);
-            //hitPointsNo++;
+            Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.red);
 
-            //lightHitPoints[hitPointsNo +1] = position;
+            CreateLineRenderer(startPosition, hit.point);
+
+            startPosition = hit.point;
+
+            if (hit.transform.tag != "Mirror")
+            {
+                startPosition = transform.position;
+                RemoveLineRenderers();
+
+            } else
+            {
+                print("MY PRECIOUS");
+            }
 
         } else
         {
-            position += direction * lightReach;
-            Debug.DrawRay(position, direction * lightReach, Color.yellow);
+            position += direction * lightReach * Time.deltaTime;
+            Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.yellow);
         }
 
 
 
         return (position, direction);
+    }
+
+
+    private void CreateLineRenderer(Vector3 start, Vector3 end)
+    {   
+        GameObject lr = Instantiate(lineRenderer, startPosition, Quaternion.identity);
+        LineRenderer LR = lr.GetComponent<LineRenderer>();
+
+        LR.SetPosition(0, start);
+        LR.SetPosition(1, end);
+
+        lines.Add(LR);
+    }
+
+    private void RemoveLineRenderers()
+    {
+        foreach(LineRenderer lr in lines)
+        {
+            Destroy(lr.gameObject);
+        }
+
+        lines.Clear();
     }
 
 }
