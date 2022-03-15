@@ -77,6 +77,8 @@ public class DrawLightBeam : MonoBehaviour
             } else
             {
                 //Cast a ray from the lightdock without drawing linerenderers
+                CreateLineRenderer(startPosition, hit.point);
+
                 startPosition = transform.position;
                 return (transform.position, transform.forward);
 
