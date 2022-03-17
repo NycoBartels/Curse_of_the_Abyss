@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Mirror
+  - Door Trigger
   layers:
   - Default
   - TransparentFX
