@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DrawLightBeam : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class DrawLightBeam : MonoBehaviour
     private Vector3 lastWallHit;
     private List<LineRenderer> lines = new List<LineRenderer>();
 
+    public List<GameObject> touchedTriggers;
 
     private void Awake()
     {
@@ -61,9 +63,36 @@ public class DrawLightBeam : MonoBehaviour
             //Reset current hitPoint to future starting point
             startPosition = hit.point;
 
+            TriggerActivate triggerActivate = hit.transform.GetComponent<TriggerActivate>();
+
+            if (triggerActivate != null)
+            {
+                triggerActivate.isTouched = true;
+
+                if (!touchedTriggers.Contains(hit.transform.gameObject))
+                {
+                    touchedTriggers.Add(hit.transform.gameObject);
+                }
+            }
+
         } else if (Physics.Raycast(lightBeam, out hit)) //If the ray hits something other than a mirror
         {
-            if(lastWallHit != hit.point) //If the ray does not hit the same spot on the wall AKA if something has moved
+            if (touchedTriggers.Count != 0)
+            {
+                for (int i = 0; i <= touchedTriggers.Count; i++)
+                {
+                    TriggerActivate doorTrigger = touchedTriggers[i].GetComponent<TriggerActivate>();
+
+                    if (doorTrigger != null)
+                    {
+                        doorTrigger.isTouched = false;
+                    }
+
+                    touchedTriggers.Remove(touchedTriggers[i]);
+                }
+            }
+
+            if (lastWallHit != hit.point) //If the ray does not hit the same spot on the wall AKA if something has moved
             {
                 //Clear the LineRenderers
                 RemoveLineRenderers();
@@ -84,6 +113,7 @@ public class DrawLightBeam : MonoBehaviour
 
 
             }
+
         } else
         {
             position += direction * lightReach * Time.deltaTime;

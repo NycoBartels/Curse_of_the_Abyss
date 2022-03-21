@@ -1,30 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField]
     int doorTriggerID;
-    private bool doorOpened = false;
+    public bool isTouched = false;
     [SerializeField]
     Animator doorAnimator;
 
-    private void OnEnable()
+    public static Action<GameObject> AddMePlease;
+    public static Action<GameObject> RemoveMePlease;
+
+    [SerializeField]
+    LevelManagerDummy levelManagerDummy;
+
+    private void Start()
     {
-        LaserTestDummy.triggerDoor += OpenDoor;
+        levelManagerDummy.triggers++;
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        LaserTestDummy.triggerDoor -= OpenDoor;
-    }
-
-    public void OpenDoor(int triggerID, bool shouldOpenDoor)
-    {
-        if (triggerID == doorTriggerID)
+        if (isTouched)
         {
-            doorAnimator.SetBool("openDoor", shouldOpenDoor);
+            AddMePlease?.Invoke(this.gameObject);
+        } else
+        {
+            RemoveMePlease?.Invoke(this.gameObject);
         }
     }
+    //private void OnEnable()
+    //{
+    //    LaserTestDummy.triggerDoor += OpenDoor;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    LaserTestDummy.triggerDoor -= OpenDoor;
+    //}
+
+    //public void OpenDoor(int triggerID, bool shouldOpenDoor)
+    //{
+    //    if (triggerID == doorTriggerID)
+    //    {
+    //        doorAnimator.SetBool("openDoor", shouldOpenDoor);
+    //    }
+    //}
 }

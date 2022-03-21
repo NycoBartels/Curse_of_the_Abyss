@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomEventTrigger : MonoBehaviour
+public class LevelManagerDummy : MonoBehaviour
 {
     public int triggers;
 
@@ -14,14 +14,14 @@ public class RoomEventTrigger : MonoBehaviour
 
     private void OnEnable()
     {
-        TriggerActivate.AddMePlease += AddTrigger;
-        TriggerActivate.RemoveMePlease += RemoveTrigger;
+        DoorTrigger.AddMePlease += AddTrigger;
+        DoorTrigger.RemoveMePlease += RemoveTrigger;
     }
 
     private void OnDisable()
     {
-        TriggerActivate.AddMePlease -= AddTrigger;
-        TriggerActivate.RemoveMePlease -= RemoveTrigger;
+        DoorTrigger.AddMePlease -= AddTrigger;
+        DoorTrigger.RemoveMePlease -= RemoveTrigger;
     }
 
     // Update is called once per frame
@@ -32,8 +32,7 @@ public class RoomEventTrigger : MonoBehaviour
             if (doorAnimator.GetBool("openDoor") == true) return;
 
             doorAnimator.SetBool("openDoor", true);
-        }
-        else
+        } else
         {
             if (doorAnimator.GetBool("openDoor") == false) return;
 

@@ -10,6 +10,8 @@ public class LaserTestDummy : MonoBehaviour
 
     public static Action<int, bool> triggerDoor;
 
+    public List<GameObject> touchedTriggers;
+
     // Update is called once per frame
     void Update()
     {
@@ -22,13 +24,37 @@ public class LaserTestDummy : MonoBehaviour
 
             if (hit.transform.tag == "Door Trigger")
             {
-                triggerDoor?.Invoke(laserID, true);
+                DoorTrigger doorTrigger = hit.transform.GetComponent<DoorTrigger>();
+
+                if (doorTrigger != null)
+                {
+                    doorTrigger.isTouched = true;
+                }
+
+                if (!touchedTriggers.Contains(hit.transform.gameObject))
+                {
+                    touchedTriggers.Add(hit.transform.gameObject);
+                }
+            } else
+            {
+                if (touchedTriggers.Count != 0)
+                {
+                    for (int i = 0; i <= touchedTriggers.Count; i++)
+                    {
+                        DoorTrigger doorTrigger = touchedTriggers[i].GetComponent<DoorTrigger>();
+
+                        if (doorTrigger != null)
+                        {
+                            doorTrigger.isTouched = false;
+                        }
+
+                        touchedTriggers.Remove(touchedTriggers[i]);
+                    }
+                }
             }
         } else
         {
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.green);
-
-            triggerDoor?.Invoke(laserID, false);
         }
     }
 }

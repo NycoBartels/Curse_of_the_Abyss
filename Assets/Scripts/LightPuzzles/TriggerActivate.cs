@@ -1,19 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TriggerActivate : MonoBehaviour
 {
-    [SerializeField] private GameObject EventObject;
+    public bool isTouched = false;
 
-    void Start()
+    public static Action<GameObject> AddMePlease;
+    public static Action<GameObject> RemoveMePlease;
+
+    [SerializeField]
+    RoomEventTrigger roomEventTrigger;
+
+    private void Start()
     {
-        EventObject.GetComponent<RoomEventTrigger>().triggers += 1;
+        roomEventTrigger.triggers++;
     }
 
-
-    void Update()
+    private void Update()
     {
-        
+        if (isTouched)
+        {
+            AddMePlease?.Invoke(this.gameObject);
+        }
+        else
+        {
+            RemoveMePlease?.Invoke(this.gameObject);
+        }
     }
 }
