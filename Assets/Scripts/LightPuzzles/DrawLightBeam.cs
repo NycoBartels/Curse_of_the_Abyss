@@ -32,7 +32,7 @@ public class DrawLightBeam : MonoBehaviour
     {
         //Creates new raycast
         lightData = ReflectBeam(lightData.Item1, lightData.Item2);
-        print(startPosition);
+        //print(startPosition);
 
 
     }
@@ -42,7 +42,7 @@ public class DrawLightBeam : MonoBehaviour
     {
         //Create Ray at position in direction, draw ray, record hitData
         Ray lightBeam = new Ray(position, direction * lightReach * Time.deltaTime);
-        Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.blue);
+        //Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.blue);
         RaycastHit hit;
 
         
@@ -53,7 +53,7 @@ public class DrawLightBeam : MonoBehaviour
             //Create starting position for the next ray
             position = hit.point;
 
-            Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.red);
+            //Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.red);
 
             //Draw the lightbeam for this ray at previous last hitPoint to current hitPoint
             CreateLineRenderer(startPosition, hit.point);
@@ -87,7 +87,7 @@ public class DrawLightBeam : MonoBehaviour
         } else
         {
             position += direction * lightReach * Time.deltaTime;
-            Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.yellow);
+            //Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.yellow);
         }
 
 
@@ -113,7 +113,7 @@ public class DrawLightBeam : MonoBehaviour
 
         if (lines.Count > maxlineRenderers)
         {
-            print("too loooooong");
+            //print("too loooooong");
 
             Destroy(lines[0].gameObject);
             lines.RemoveAt(0);
