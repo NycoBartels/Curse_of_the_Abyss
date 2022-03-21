@@ -12,13 +12,16 @@ public class LaserTestDummy : MonoBehaviour
 
     public List<GameObject> touchedTriggers;
 
+    [SerializeField]
+    private LayerMask testMask;
+
     // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, testMask))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
 
@@ -35,26 +38,25 @@ public class LaserTestDummy : MonoBehaviour
                 {
                     touchedTriggers.Add(hit.transform.gameObject);
                 }
-            } else
-            {
-                if (touchedTriggers.Count != 0)
-                {
-                    for (int i = 0; i <= touchedTriggers.Count; i++)
-                    {
-                        DoorTrigger doorTrigger = touchedTriggers[i].GetComponent<DoorTrigger>();
-
-                        if (doorTrigger != null)
-                        {
-                            doorTrigger.isTouched = false;
-                        }
-
-                        touchedTriggers.Remove(touchedTriggers[i]);
-                    }
-                }
-            }
+            } 
         } else
         {
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100, Color.green);
+
+            if (touchedTriggers.Count != 0)
+            {
+                for (int i = 0; i <= touchedTriggers.Count; i++)
+                {
+                    DoorTrigger doorTrigger = touchedTriggers[i].GetComponent<DoorTrigger>();
+
+                    if (doorTrigger != null)
+                    {
+                        doorTrigger.isTouched = false;
+                    }
+
+                    touchedTriggers.Remove(touchedTriggers[i]);
+                }
+            }
         }
     }
 }

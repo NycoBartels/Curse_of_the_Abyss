@@ -14,7 +14,7 @@ public class DrawLightBeam : MonoBehaviour
     private Vector3 lastWallHit;
     private List<LineRenderer> lines = new List<LineRenderer>();
 
-    public List<GameObject> touchedTriggers;
+    public List<Transform> touchedTriggers = new List<Transform>();
 
     private void Awake()
     {
@@ -42,6 +42,7 @@ public class DrawLightBeam : MonoBehaviour
 
     private (Vector3, Vector3) ReflectBeam(Vector3 position, Vector3 direction)
     {
+
         //Create Ray at position in direction, draw ray, record hitData
         Ray lightBeam = new Ray(position, direction * lightReach * Time.deltaTime);
         //Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.blue);
@@ -50,6 +51,11 @@ public class DrawLightBeam : MonoBehaviour
         
         if(Physics.Raycast(lightBeam, out hit) && hit.transform.tag == "Mirror") //If the ray hits a mirror
         {
+            if (!touchedTriggers.Contains(hit.transform))
+            {
+                touchedTriggers.Add(hit.transform);
+            }
+
             //Create a normal direction for the next ray
             direction = Vector3.Reflect(direction, hit.normal);
             //Create starting position for the next ray
@@ -63,31 +69,12 @@ public class DrawLightBeam : MonoBehaviour
             //Reset current hitPoint to future starting point
             startPosition = hit.point;
 
-            TriggerActivate triggerActivate = hit.transform.GetComponent<TriggerActivate>();
-
-            if (triggerActivate != null)
-            {
-                triggerActivate.isTouched = true;
-
-                if (!touchedTriggers.Contains(hit.transform.gameObject))
-                {
-                    touchedTriggers.Add(hit.transform.gameObject);
-                }
-            }
-
         } else if (Physics.Raycast(lightBeam, out hit)) //If the ray hits something other than a mirror
         {
             if (touchedTriggers.Count != 0)
             {
                 for (int i = 0; i <= touchedTriggers.Count; i++)
                 {
-                    TriggerActivate doorTrigger = touchedTriggers[i].GetComponent<TriggerActivate>();
-
-                    if (doorTrigger != null)
-                    {
-                        doorTrigger.isTouched = false;
-                    }
-
                     touchedTriggers.Remove(touchedTriggers[i]);
                 }
             }
@@ -116,6 +103,7 @@ public class DrawLightBeam : MonoBehaviour
 
         } else
         {
+
             position += direction * lightReach * Time.deltaTime;
             //Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.yellow);
         }

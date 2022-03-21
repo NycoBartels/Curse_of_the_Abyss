@@ -233,8 +233,8 @@ GameObject:
   - component: {fileID: 362192223}
   - component: {fileID: 362192222}
   - component: {fileID: 362192221}
-  - component: {fileID: 362192220}
   - component: {fileID: 362192225}
+  - component: {fileID: 362192220}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -251,11 +251,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 362192219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b015a2752839d345a522f82d4d65f1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4455d598152ba984bb34965e0f45c4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserID: 0
-  touchedTriggers: []
+  selectedTransforms: []
 --- !u!65 &362192221
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -733,7 +732,7 @@ GameObject:
   - component: {fileID: 2131533592}
   - component: {fileID: 2131533591}
   - component: {fileID: 2131533596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door Trigger
   m_TagString: Door Trigger
   m_Icon: {fileID: 0}
