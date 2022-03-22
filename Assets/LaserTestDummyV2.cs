@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LaserTestDummyV2 : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class LaserTestDummyV2 : MonoBehaviour
 
     [SerializeField]
     private List<Transform> selectedTransforms = new List<Transform>();
+
+    //public static Action<int> callPuzzleManager;
 
     // Start is called before the first frame update
     void Start()
@@ -18,27 +21,20 @@ public class LaserTestDummyV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (selectedTransforms.Count != 0)
-        {
-            for (int i=0; i <= selectedTransforms.Count; i++)
-            {
-                selectedTransforms.Remove(selectedTransforms[i]);
-            }
-        }
 
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.transform.name);
-
-            Transform selection = hit.transform;
-            if (selection.CompareTag(selectionTag))
+            if (hit.transform.tag == selectionTag)
             {
-                selectedTransforms.Add(selection);
+                if (!selectedTransforms.Contains(hit.transform))
+                {
+                    selectedTransforms.Add(hit.transform);
+                    //callPuzzleManager?.Invoke(selectedTransforms.Count);
+                }
             }
-
         }
     }
 }

@@ -691,7 +691,8 @@ MonoBehaviour:
   lightReach: 0.1
   lineRenderer: {fileID: 8439305522168841268, guid: 2413d71cfad454849bfb278474fe81f7, type: 3}
   maxlineRenderers: 8
-  touchedTriggers: []
+  selectedTriggers: []
+  laserID: 0
 --- !u!65 &334256139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1174,7 +1175,8 @@ MonoBehaviour:
   lightReach: 0.1
   lineRenderer: {fileID: 8439305522168841268, guid: 2413d71cfad454849bfb278474fe81f7, type: 3}
   maxlineRenderers: 8
-  touchedTriggers: []
+  selectedTriggers: []
+  laserID: 1
 --- !u!65 &931693000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1340,7 +1342,7 @@ GameObject:
   - component: {fileID: 974410857}
   - component: {fileID: 974410856}
   - component: {fileID: 974410860}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target (3)
   m_TagString: Mirror
   m_Icon: {fileID: 0}
@@ -1435,8 +1437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5affa621b10094d83460c02bd5645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTouched: 0
-  roomEventTrigger: {fileID: 1028227475}
 --- !u!1 &1007029178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,7 +1450,7 @@ GameObject:
   - component: {fileID: 1007029180}
   - component: {fileID: 1007029179}
   - component: {fileID: 1007029183}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target
   m_TagString: Mirror
   m_Icon: {fileID: 0}
@@ -1545,8 +1545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5affa621b10094d83460c02bd5645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTouched: 0
-  roomEventTrigger: {fileID: 1028227475}
 --- !u!1 &1025232985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1665,7 @@ GameObject:
   - component: {fileID: 1028227474}
   - component: {fileID: 1028227475}
   m_Layer: 0
-  m_Name: Room1 Events
+  m_Name: Puzzle Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1699,8 +1697,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3119d20c3d3e81e4390cfde6abe2df3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers: 0
-  triggersActivated: []
+  puzzleManagerID: 1
+  triggersList:
+  - {fileID: 1007029182}
+  - {fileID: 1518879687}
+  - {fileID: 1685509371}
+  - {fileID: 974410859}
   doorAnimator: {fileID: 1425099598}
 --- !u!1 &1034780450
 GameObject:
@@ -2640,7 +2642,7 @@ GameObject:
   - component: {fileID: 1518879685}
   - component: {fileID: 1518879688}
   - component: {fileID: 1518879684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target (1)
   m_TagString: Mirror
   m_Icon: {fileID: 0}
@@ -2735,8 +2737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5affa621b10094d83460c02bd5645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTouched: 0
-  roomEventTrigger: {fileID: 1028227475}
 --- !u!1 &1576972781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3199,7 +3199,7 @@ GameObject:
   - component: {fileID: 1685509369}
   - component: {fileID: 1685509368}
   - component: {fileID: 1685509372}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target (2)
   m_TagString: Mirror
   m_Icon: {fileID: 0}
@@ -3294,8 +3294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5affa621b10094d83460c02bd5645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTouched: 0
-  roomEventTrigger: {fileID: 1028227475}
 --- !u!1 &1694328414
 GameObject:
   m_ObjectHideFlags: 0

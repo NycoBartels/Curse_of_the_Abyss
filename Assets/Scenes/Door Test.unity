@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 2125275447}
   - component: {fileID: 2125275446}
   m_Layer: 0
-  m_Name: Level Manager
+  m_Name: Puzzle Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,11 +698,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2125275445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b83c487538b79a746b1d89d009a98c3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 97a642681e46d1842a8762227c76926c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers: 0
-  triggersActivated: []
+  triggersList:
+  - {fileID: 2131533595}
   doorAnimator: {fileID: 296211408}
 --- !u!4 &2125275447
 Transform:
@@ -843,10 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6081d31956741f5448a139347a17e756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorTriggerID: 0
   isTouched: 0
-  doorAnimator: {fileID: 296211408}
-  levelManagerDummy: {fileID: 2125275446}
 --- !u!1001 &2633610765940486779
 PrefabInstance:
   m_ObjectHideFlags: 0

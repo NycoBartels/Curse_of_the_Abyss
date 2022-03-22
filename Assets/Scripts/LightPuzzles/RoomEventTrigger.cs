@@ -4,57 +4,31 @@ using UnityEngine;
 
 public class RoomEventTrigger : MonoBehaviour
 {
-    public int triggers;
+    [SerializeField]
+    private int puzzleManagerID;
 
     [SerializeField]
-    private List<GameObject> triggersActivated;
+    private List<Transform> triggersList = new List<Transform>();
 
     [SerializeField]
     Animator doorAnimator;
 
     private void OnEnable()
     {
-        TriggerActivate.AddMePlease += AddTrigger;
-        TriggerActivate.RemoveMePlease += RemoveTrigger;
+        DrawLightBeam.callPuzzleManager += AssessGameState;
     }
 
     private void OnDisable()
     {
-        TriggerActivate.AddMePlease -= AddTrigger;
-        TriggerActivate.RemoveMePlease -= RemoveTrigger;
+        DrawLightBeam.callPuzzleManager -= AssessGameState;
     }
 
-    // Update is called once per frame
-    void Update()
+    void AssessGameState(int laserID, int activatedTriggers)
     {
-        if (triggersActivated.Count == triggers)
-        {
-            if (doorAnimator.GetBool("openDoor") == true) return;
+        if (laserID != puzzleManagerID) return;
 
-            doorAnimator.SetBool("openDoor", true);
-        }
-        else
-        {
-            if (doorAnimator.GetBool("openDoor") == false) return;
+        if (activatedTriggers != triggersList.Count) return;
 
-            doorAnimator.SetBool("openDoor", false);
-        }
-    }
-
-
-    public void AddTrigger(GameObject activatedTrigger)
-    {
-        if (!triggersActivated.Contains(activatedTrigger))
-        {
-            triggersActivated.Add(activatedTrigger);
-        }
-    }
-
-    public void RemoveTrigger(GameObject deactivatedTrigger)
-    {
-        if (triggersActivated.Contains(deactivatedTrigger))
-        {
-            triggersActivated.Remove(deactivatedTrigger);
-        }
+        doorAnimator.SetBool("openDoor", true);
     }
 }

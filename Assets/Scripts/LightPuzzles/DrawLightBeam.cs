@@ -14,7 +14,12 @@ public class DrawLightBeam : MonoBehaviour
     private Vector3 lastWallHit;
     private List<LineRenderer> lines = new List<LineRenderer>();
 
-    public List<Transform> touchedTriggers = new List<Transform>();
+    [SerializeField]
+    private List<Transform> selectedTriggers = new List<Transform>();
+    public static Action<int, int> callPuzzleManager;
+
+    [SerializeField]
+    private int laserID;
 
     private void Awake()
     {
@@ -51,9 +56,15 @@ public class DrawLightBeam : MonoBehaviour
         
         if(Physics.Raycast(lightBeam, out hit) && hit.transform.tag == "Mirror") //If the ray hits a mirror
         {
-            if (!touchedTriggers.Contains(hit.transform))
+            TriggerActivate triggerScript = hit.transform.GetComponent<TriggerActivate>();
+
+            if (triggerScript != null)
             {
-                touchedTriggers.Add(hit.transform);
+                if (!selectedTriggers.Contains(hit.transform))
+                {
+                    selectedTriggers.Add(hit.transform);
+                    callPuzzleManager?.Invoke(laserID, selectedTriggers.Count);
+                }
             }
 
             //Create a normal direction for the next ray
@@ -71,13 +82,6 @@ public class DrawLightBeam : MonoBehaviour
 
         } else if (Physics.Raycast(lightBeam, out hit)) //If the ray hits something other than a mirror
         {
-            if (touchedTriggers.Count != 0)
-            {
-                for (int i = 0; i <= touchedTriggers.Count; i++)
-                {
-                    touchedTriggers.Remove(touchedTriggers[i]);
-                }
-            }
 
             if (lastWallHit != hit.point) //If the ray does not hit the same spot on the wall AKA if something has moved
             {
