@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DockRotation : MonoBehaviour
 {
-    [SerializeField] [Range(0, 8)] private int rotationNo;
+    [SerializeField] [Range(0, 8)] public int rotationNo;
 
     void Start()
     {

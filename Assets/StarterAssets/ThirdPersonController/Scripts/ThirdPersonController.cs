@@ -120,6 +120,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			TurnMirror();
 		}
 
 		private void LateUpdate()
@@ -314,5 +315,34 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		private void TurnMirror()
+        {
+            if (_input.turnMirror)
+            {
+
+				RaycastHit hit;
+				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+                if (Physics.Raycast(ray, out hit))
+                {
+					GameObject hitObject = hit.transform.gameObject;
+					Component mirrorScript = hitObject.GetComponent<MirrorRotation>();
+					Component dockScript = hitObject.GetComponent<DockRotation>();
+					if (mirrorScript != null)
+                    {
+						hitObject.GetComponent<MirrorRotation>().rotationNo += 1;
+					} else if (dockScript != null)
+                    {
+						hitObject.GetComponent<DockRotation>().rotationNo += 1;
+					}
+                }
+
+
+				_input.turnMirror = false;
+			}
+        }
+
+
 	}
 }

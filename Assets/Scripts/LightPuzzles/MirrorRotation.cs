@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MirrorRotation : MonoBehaviour
 {
-    [SerializeField] [Range(0, 16)] private int rotationNo;
+    [SerializeField] [Range(0, 16)] public int rotationNo;
 
 
     void Start()
