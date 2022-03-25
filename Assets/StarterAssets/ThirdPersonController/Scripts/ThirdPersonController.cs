@@ -121,7 +121,7 @@ namespace StarterAssets
 			GroundedCheck();
 			Move();
 			TurnMirror();
-
+			Escape();
 		}
 
 		private void LateUpdate()
@@ -344,6 +344,15 @@ namespace StarterAssets
 			}
         }
 
+		private void Escape()
+        {
+            if (_input.escape)
+            {
+				Application.Quit();
+            }
+
+			_input.escape = false;
+        }
 
 
 	}

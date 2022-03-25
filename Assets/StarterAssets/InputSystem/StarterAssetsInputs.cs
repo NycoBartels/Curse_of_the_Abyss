@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool turnMirror;
+		public bool escape;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -52,6 +53,11 @@ namespace StarterAssets
 			TurnMirrorInput(value.isPressed);
         }
 
+		public void OnEscape(InputValue value)
+        {
+			EscapeInput(value.isPressed);
+        }
+
 
 
 #else
@@ -82,6 +88,11 @@ namespace StarterAssets
 		public void TurnMirrorInput(bool newTurnMirrorState)
         {
 			turnMirror = newTurnMirrorState;
+        }
+
+		public void EscapeInput(bool newEscapeState)
+        {
+			escape = newEscapeState;
         }
 
 
