@@ -121,6 +121,7 @@ namespace StarterAssets
 			GroundedCheck();
 			Move();
 			TurnMirror();
+
 		}
 
 		private void LateUpdate()
@@ -342,6 +343,7 @@ namespace StarterAssets
 				_input.turnMirror = false;
 			}
         }
+
 
 
 	}
