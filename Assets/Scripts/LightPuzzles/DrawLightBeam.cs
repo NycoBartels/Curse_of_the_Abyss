@@ -8,6 +8,7 @@ public class DrawLightBeam : MonoBehaviour
     [SerializeField] private float lightReach;
     [SerializeField] private GameObject lineRenderer;
     [SerializeField] private int maxlineRenderers;
+    [SerializeField] private bool active = false;
 
     private (Vector3, Vector3) lightData;
     private Vector3 startPosition;
@@ -30,16 +31,20 @@ public class DrawLightBeam : MonoBehaviour
     {
         startPosition = transform.position;
 
-        //Creates initial raycast
         lightData = ReflectBeam(transform.position + transform.forward * 0.075f, transform.forward);
+        //Creates initial raycast
+        
     }
 
 
     void FixedUpdate()
     {
+        if (active)
+        {
         //Creates new raycast
         lightData = ReflectBeam(lightData.Item1, lightData.Item2);
         //print(startPosition);
+        } 
 
 
     }
