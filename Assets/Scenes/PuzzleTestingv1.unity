@@ -232,6 +232,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
       value: 12
       objectReference: {fileID: 0}
@@ -1072,6 +1076,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
       value: 16
       objectReference: {fileID: 0}
@@ -1136,6 +1144,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465126, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
@@ -1351,6 +1363,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465126, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
@@ -2267,6 +2283,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465126, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465131, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_Name
@@ -3434,6 +3454,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
       value: 16
       objectReference: {fileID: 0}
@@ -4459,6 +4483,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465126, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
@@ -5576,6 +5604,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
       value: 20
       objectReference: {fileID: 0}
@@ -6365,6 +6397,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: active
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
@@ -7837,6 +7873,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
       value: 16
       objectReference: {fileID: 0}
@@ -9107,6 +9147,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465126, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465131, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_Name
@@ -10960,6 +11004,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465126, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465131, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: m_Name
@@ -14344,6 +14392,10 @@ PrefabInstance:
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: active
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
+      propertyPath: laserID
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1366160811894465130, guid: 46bbf57bf65f641478b404820f680a4c, type: 3}
       propertyPath: maxlineRenderers
