@@ -157,6 +157,12 @@ public class DrawLightBeam : MonoBehaviour
         }
 
         lines.Clear();
+
+        ClearTargets();
     }
 
+    private void ClearTargets()
+    {
+        selectedTriggers.Clear();
+    }
 }
