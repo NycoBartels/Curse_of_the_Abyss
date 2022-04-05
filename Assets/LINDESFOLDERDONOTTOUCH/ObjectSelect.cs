@@ -29,8 +29,8 @@ public class ObjectSelect : MonoBehaviour
             Component dockScript = hitObject.GetComponent<DockRotation>();
             if (mirrorScript != null)
             {
-                hitObject.GetComponent<MeshRenderer>().material = glow;
-                lastObjectMirror = hitObject;
+                hitObject.transform.parent.GetComponent<MeshRenderer>().material = glow;
+                lastObjectMirror = hitObject.transform.parent.gameObject;
             }
             else if (dockScript != null)
             {
