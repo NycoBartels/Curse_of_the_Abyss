@@ -15,6 +15,6 @@ public class MirrorRotation : MonoBehaviour
 
     void Update()
     {
-        transform.parent.transform.eulerAngles = new Vector3(0, rotationNo * 22.5f, 0);
+        transform.eulerAngles = new Vector3(0, rotationNo * 22.5f, 0);
     }
 }

@@ -327,11 +327,18 @@ namespace StarterAssets
                 if (Physics.Raycast(ray, out hit))
                 {
 					GameObject hitObject = hit.transform.gameObject;
-					Component mirrorScript = hitObject.GetComponent<MirrorRotation>();
+					Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
 					Component dockScript = hitObject.GetComponent<DockRotation>();
 					if (mirrorScript != null)
                     {
-						hitObject.GetComponent<MirrorRotation>().rotationNo += 1;
+                        if (hitObject.name == "Left")
+                        {
+							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo += 1;
+						} else if (hitObject.name == "Right")
+                        {
+							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo -= 1;
+						}
+						
 					} else if (dockScript != null)
                     {
 						hitObject.GetComponent<DockRotation>().rotationNo += 1;

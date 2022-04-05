@@ -25,12 +25,21 @@ public class ObjectSelect : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            Component mirrorScript = hitObject.GetComponent<MirrorRotation>();
+            Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
             Component dockScript = hitObject.GetComponent<DockRotation>();
             if (mirrorScript != null)
             {
-                hitObject.transform.parent.GetComponent<MeshRenderer>().material = glow;
-                lastObjectMirror = hitObject.transform.parent.gameObject;
+                hitObject.GetComponentInParent<MeshRenderer>().material = glow;
+
+                if (lastObjectMirror == null)
+                {
+                    lastObjectMirror = hitObject.gameObject;
+                }
+                else if (hitObject.gameObject != lastObjectMirror)
+                {
+                    lastObjectMirror.GetComponentInParent<MeshRenderer>().material = mirror;
+                    lastObjectMirror = hitObject.gameObject;
+                }
             }
             else if (dockScript != null)
             {
@@ -44,7 +53,7 @@ public class ObjectSelect : MonoBehaviour
                 }
                 if(lastObjectMirror != null)
                 {
-                    lastObjectMirror.GetComponent<MeshRenderer>().material = mirror;
+                    lastObjectMirror.GetComponentInParent<MeshRenderer>().material = mirror;
                 }
                 
             }
