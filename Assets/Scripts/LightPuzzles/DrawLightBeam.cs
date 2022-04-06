@@ -9,11 +9,15 @@ public class DrawLightBeam : MonoBehaviour
     [SerializeField] private GameObject lineRenderer;
     [SerializeField] private int maxlineRenderers;
     [SerializeField] private bool active = false;
+    [SerializeField] private Material litupMaterial;
+    [SerializeField] private Material originalMaterial;
 
     private (Vector3, Vector3) lightData;
     private Vector3 startPosition;
     private Vector3 lastWallHit;
     private List<LineRenderer> lines = new List<LineRenderer>();
+
+    private int trappedCurrentCheck = 0;
 
     [SerializeField]
     private List<Transform> selectedTriggers = new List<Transform>();
@@ -44,7 +48,7 @@ public class DrawLightBeam : MonoBehaviour
         //Creates new raycast
         lightData = ReflectBeam(lightData.Item1, lightData.Item2);
         //print(startPosition);
-        } 
+        }
 
 
     }
@@ -65,6 +69,8 @@ public class DrawLightBeam : MonoBehaviour
 
             if (triggerScript != null)
             {
+                hit.transform.gameObject.GetComponent<Renderer>().material = litupMaterial;
+
                 if (!selectedTriggers.Contains(hit.transform))
                 {
                     selectedTriggers.Add(hit.transform);
@@ -77,7 +83,6 @@ public class DrawLightBeam : MonoBehaviour
             //Create starting position for the next ray
             position = hit.point;
 
-            //Debug.DrawRay(position, direction * lightReach * Time.deltaTime, Color.red);
 
             //Draw the lightbeam for this ray at previous last hitPoint to current hitPoint
             CreateLineRenderer(startPosition, hit.point);
@@ -85,8 +90,25 @@ public class DrawLightBeam : MonoBehaviour
             //Reset current hitPoint to future starting point
             startPosition = hit.point;
 
+
+            trappedCurrentCheck++;
+            if(trappedCurrentCheck > maxlineRenderers)
+            {
+                trappedCurrentCheck = 0;
+
+                //Clear the LineRenderers
+                RemoveLineRenderers();
+
+                //Reset the ray to the dock.
+                //lastWallHit = hit.point;
+                startPosition = transform.position;
+                return (transform.position, transform.forward);
+            }
+
+
         } else if (Physics.Raycast(lightBeam, out hit)) //If the ray hits something other than a mirror
         {
+            trappedCurrentCheck = 0;
 
             if (lastWallHit != hit.point) //If the ray does not hit the same spot on the wall AKA if something has moved
             {
@@ -157,6 +179,18 @@ public class DrawLightBeam : MonoBehaviour
         }
 
         lines.Clear();
+
+        ClearTargets();
     }
 
+
+    private void ClearTargets()
+    {
+        foreach(Transform target in selectedTriggers)
+        {
+            target.gameObject.GetComponent<Renderer>().material = originalMaterial;
+        }
+
+        selectedTriggers.Clear();
+    }
 }

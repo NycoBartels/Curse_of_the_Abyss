@@ -126,6 +126,7 @@ MonoBehaviour:
   lightReach: 0.1
   lineRenderer: {fileID: 8439305522168841268, guid: 2413d71cfad454849bfb278474fe81f7, type: 3}
   maxlineRenderers: 8
+  active: 0
   selectedTriggers: []
   laserID: 1
 --- !u!1 &3746358931048767429
@@ -219,7 +220,7 @@ SphereCollider:
   m_GameObject: {fileID: 3746358931048767429}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
