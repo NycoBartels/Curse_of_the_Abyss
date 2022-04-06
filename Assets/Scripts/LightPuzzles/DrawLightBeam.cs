@@ -9,6 +9,8 @@ public class DrawLightBeam : MonoBehaviour
     [SerializeField] private GameObject lineRenderer;
     [SerializeField] private int maxlineRenderers;
     [SerializeField] private bool active = false;
+    [SerializeField] private Material litupMaterial;
+    [SerializeField] private Material originalMaterial;
 
     private (Vector3, Vector3) lightData;
     private Vector3 startPosition;
@@ -67,6 +69,8 @@ public class DrawLightBeam : MonoBehaviour
 
             if (triggerScript != null)
             {
+                hit.transform.gameObject.GetComponent<Renderer>().material = litupMaterial;
+
                 if (!selectedTriggers.Contains(hit.transform))
                 {
                     selectedTriggers.Add(hit.transform);
@@ -182,6 +186,11 @@ public class DrawLightBeam : MonoBehaviour
 
     private void ClearTargets()
     {
+        foreach(Transform target in selectedTriggers)
+        {
+            target.gameObject.GetComponent<Renderer>().material = originalMaterial;
+        }
+
         selectedTriggers.Clear();
     }
 }
