@@ -250,6 +250,17 @@
                 },
                 {
                     "name": "",
+                    "id": "844817e7-f2f6-44a7-8aee-741444e5abeb",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurnMirror",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c40f3930-0add-4eea-a12b-ae0b96caf8ca",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
