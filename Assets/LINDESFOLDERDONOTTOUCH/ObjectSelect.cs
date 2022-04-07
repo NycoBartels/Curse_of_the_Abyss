@@ -16,7 +16,7 @@ public class ObjectSelect : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         RaycastHit hit;
@@ -27,33 +27,35 @@ public class ObjectSelect : MonoBehaviour
             GameObject hitObject = hit.transform.gameObject;
             Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
             Component dockScript = hitObject.GetComponent<DockRotation>();
-            if (mirrorScript != null)
+            if (mirrorScript != null && hitObject.name != "Side Blocks")
             {
-                hitObject.GetComponentInParent<MeshRenderer>().material = glow;
-
+                hitObject.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = glow;
+                hitObject.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = glow;
                 if (lastObjectMirror == null)
                 {
                     lastObjectMirror = hitObject.gameObject;
                 }
                 else if (hitObject.gameObject != lastObjectMirror)
                 {
-                    lastObjectMirror.GetComponentInParent<MeshRenderer>().material = mirror;
+                    lastObjectMirror.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = mirror;
+                    lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
                     lastObjectMirror = hitObject.gameObject;
                 }
             }
             else if (dockScript != null)
             {
-                hitObject.GetComponent<MeshRenderer>().material = glow;
+                hitObject.transform.Find("handle").GetComponent<MeshRenderer>().material = glow;
                 lastObjectDock = hitObject;
             } else
             {
                 if(lastObjectDock != null)
                 {
-                    lastObjectDock.GetComponent<MeshRenderer>().material = dock;
+                    lastObjectDock.transform.Find("handle").GetComponent<MeshRenderer>().material = dock;
                 }
                 if(lastObjectMirror != null)
                 {
-                    lastObjectMirror.GetComponentInParent<MeshRenderer>().material = mirror;
+                    lastObjectMirror.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = mirror;
+                    lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
                 }
                 
             }
