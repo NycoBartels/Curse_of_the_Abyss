@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 1366160811894465124}
   - component: {fileID: 1366160811894465125}
   - component: {fileID: 1366160811894465130}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Dock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

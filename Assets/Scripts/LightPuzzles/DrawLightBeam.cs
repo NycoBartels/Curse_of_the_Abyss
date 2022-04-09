@@ -63,7 +63,7 @@ public class DrawLightBeam : MonoBehaviour
         RaycastHit hit;
 
         
-        if(Physics.Raycast(lightBeam, out hit, Mathf.Infinity, ~LayerMask.GetMask("Interact")) && hit.transform.tag == "Mirror") //If the ray hits a mirror
+        if(Physics.Raycast(lightBeam, out hit) && hit.transform.tag == "Mirror") //If the ray hits a mirror
         {
             TriggerActivate triggerScript = hit.transform.GetComponent<TriggerActivate>();
 
