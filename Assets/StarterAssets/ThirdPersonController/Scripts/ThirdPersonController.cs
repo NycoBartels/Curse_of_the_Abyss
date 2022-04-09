@@ -325,7 +325,7 @@ namespace StarterAssets
 				RaycastHit hit;
 				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Interact")))
                 {
 					GameObject hitObject = hit.transform.gameObject;
 					Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
@@ -335,7 +335,7 @@ namespace StarterAssets
                         if (hitObject.name == "Left")
                         {
 							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo += 1;
-						} else if (hitObject.name == "Right")
+						} else if (hitObject.name == "Interact collider")
                         {
 							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo -= 1;
 						}
