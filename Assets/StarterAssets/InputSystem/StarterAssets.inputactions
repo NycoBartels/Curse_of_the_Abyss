@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "TurnMirror",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "e02b86c6-ba84-4907-9f97-4688bef03457",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Escape",
@@ -176,7 +176,7 @@
                     "id": "ed66cbff-2900-4a62-8896-696503cfcd31",
                     "path": "<Pointer>/delta",
                     "interactions": "",
-                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=15,y=15)",
+                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=10,y=10)",
                     "groups": "KeyboardMouse",
                     "action": "Look",
                     "isComposite": false,
@@ -187,7 +187,7 @@
                     "id": "d1d171b6-19d8-47a6-ba3a-71b6a8e7b3c0",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "InvertVector2(invertX=false),StickDeadzone,ScaleVector2(x=300,y=300)",
+                    "processors": "InvertVector2(invertX=false),StickDeadzone,ScaleVector2(x=200,y=200)",
                     "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -251,10 +251,10 @@
                 {
                     "name": "",
                     "id": "844817e7-f2f6-44a7-8aee-741444e5abeb",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/#(Q)",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "Invert",
+                    "groups": "KeyboardMouse",
                     "action": "TurnMirror",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -264,8 +264,19 @@
                     "id": "c40f3930-0add-4eea-a12b-ae0b96caf8ca",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Invert",
                     "groups": "Gamepad",
+                    "action": "TurnMirror",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17fd95c8-0654-4a1a-9276-7d218fbe64e9",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "TurnMirror",
                     "isComposite": false,
                     "isPartOfComposite": false

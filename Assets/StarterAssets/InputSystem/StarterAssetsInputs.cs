@@ -12,7 +12,8 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool turnMirror;
+		//public bool turnMirror;
+		public float turnMirror;
 		public bool escape;
 
 		[Header("Movement Settings")]
@@ -50,7 +51,7 @@ namespace StarterAssets
 
 		public void OnTurnMirror(InputValue value)
         {
-			TurnMirrorInput(value.isPressed);
+			TurnMirrorInput(value.Get<float>());
         }
 
 		public void OnEscape(InputValue value)
@@ -85,7 +86,7 @@ namespace StarterAssets
 			sprint = newSprintState;
 		}
 
-		public void TurnMirrorInput(bool newTurnMirrorState)
+		public void TurnMirrorInput(float newTurnMirrorState)
         {
 			turnMirror = newTurnMirrorState;
         }
