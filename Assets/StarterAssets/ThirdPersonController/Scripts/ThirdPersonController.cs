@@ -319,7 +319,7 @@ namespace StarterAssets
 
 		private void TurnMirror()
         {
-            if (_input.turnMirror)
+            if (_input.turnMirror != 0)
             {
 
 				RaycastHit hit;
@@ -332,12 +332,12 @@ namespace StarterAssets
 					Component dockScript = hitObject.GetComponent<DockRotation>();
 					if (mirrorScript != null)
                     {
-                        if (hitObject.name == "Left")
+                        if (hitObject.name == "Interact collider")
                         {
-							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo += 1;
-						} else if (hitObject.name == "Interact collider")
-                        {
-							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo -= 1;
+							int turnDirection;
+							turnDirection = (Mathf.FloorToInt(_input.turnMirror));
+							//print();
+							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo -= turnDirection;
 						}
 						
 					} else if (dockScript != null)
@@ -347,7 +347,7 @@ namespace StarterAssets
                 }
 
 
-				_input.turnMirror = false;
+				_input.turnMirror = 0;
 			}
         }
 
