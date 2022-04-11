@@ -342,7 +342,10 @@ namespace StarterAssets
 						
 					} else if (dockScript != null)
                     {
-						hitObject.GetComponent<DockRotation>().rotationNo += 1;
+						int turnDirection;
+						turnDirection = (Mathf.FloorToInt(_input.turnMirror));
+
+						hitObject.GetComponent<DockRotation>().rotationNo -= turnDirection;
 					}
                 }
 
