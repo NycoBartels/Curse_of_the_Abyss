@@ -12,6 +12,9 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		//public bool turnMirror;
+		public float turnMirror;
+		public bool escape;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -45,12 +48,25 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnTurnMirror(InputValue value)
+        {
+			TurnMirrorInput(value.Get<float>());
+        }
+
+		public void OnEscape(InputValue value)
+        {
+			EscapeInput(value.isPressed);
+        }
+
+
+
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -69,6 +85,18 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
+
+		public void TurnMirrorInput(float newTurnMirrorState)
+        {
+			turnMirror = newTurnMirrorState;
+        }
+
+		public void EscapeInput(bool newEscapeState)
+        {
+			escape = newEscapeState;
+        }
+
+
 
 #if !UNITY_IOS || !UNITY_ANDROID
 

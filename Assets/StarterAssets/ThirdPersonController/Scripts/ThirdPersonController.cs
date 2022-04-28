@@ -120,6 +120,8 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			TurnMirror();
+			Escape();
 		}
 
 		private void LateUpdate()
@@ -314,5 +316,54 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		private void TurnMirror()
+        {
+            if (_input.turnMirror != 0)
+            {
+
+				RaycastHit hit;
+				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Interact")))
+                {
+					GameObject hitObject = hit.transform.gameObject;
+					Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
+					Component dockScript = hitObject.GetComponent<DockRotation>();
+					if (mirrorScript != null)
+                    {
+                        if (hitObject.name == "Interact collider")
+                        {
+							int turnDirection;
+							turnDirection = (Mathf.FloorToInt(_input.turnMirror));
+							//print();
+							hitObject.transform.parent.GetComponentInParent<MirrorRotation>().rotationNo -= turnDirection;
+						}
+						
+					} else if (dockScript != null)
+                    {
+						int turnDirection;
+						turnDirection = (Mathf.FloorToInt(_input.turnMirror));
+
+						hitObject.GetComponent<DockRotation>().rotationNo -= turnDirection;
+					}
+                }
+
+
+				_input.turnMirror = 0;
+			}
+        }
+
+		private void Escape()
+        {
+            if (_input.escape)
+            {
+				Application.Quit();
+            }
+
+			_input.escape = false;
+        }
+
+
 	}
 }
