@@ -330,6 +330,7 @@ namespace StarterAssets
 					GameObject hitObject = hit.transform.gameObject;
 					Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
 					Component dockScript = hitObject.GetComponent<DockRotation>();
+					Component consoleScript = hitObject.GetComponent<MirrorConsole>();
 					if (mirrorScript != null)
                     {
                         if (hitObject.name == "Interact collider")
@@ -346,6 +347,17 @@ namespace StarterAssets
 						turnDirection = (Mathf.FloorToInt(_input.turnMirror));
 
 						hitObject.GetComponent<DockRotation>().rotationNo -= turnDirection;
+					} else if (consoleScript != null)
+                    {
+						int turnDirection;
+						turnDirection = (Mathf.FloorToInt(_input.turnMirror));
+
+						GameObject[] mirrorListObj = hitObject.GetComponent<MirrorConsole>().mirrorList;
+
+						for(int mirrorNo = 0; mirrorNo < mirrorListObj.Length; mirrorNo++)
+                        {
+							mirrorListObj[mirrorNo].GetComponentInParent<MirrorRotation>().rotationNo -= turnDirection;
+						}
 					}
                 }
 
