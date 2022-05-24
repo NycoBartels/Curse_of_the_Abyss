@@ -29,6 +29,9 @@ public class RoomEventTrigger : MonoBehaviour
 
         if (activatedTriggers != triggersList.Count) return;
 
-        doorAnimator.SetBool("openDoor", true);
+        if (doorAnimator != null)
+        {
+            doorAnimator.SetBool("openDoor", true);
+        }
     }
 }
