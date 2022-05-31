@@ -331,6 +331,8 @@ namespace StarterAssets
 					Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
 					Component dockScript = hitObject.GetComponent<DockRotation>();
 					Component consoleScript = hitObject.GetComponent<MirrorConsole>();
+					// get the reset script from the resetbutton currently selected
+					Component resetScript = hitObject.GetComponent<ResetButton>();
 					if (mirrorScript != null)
                     {
                         if (hitObject.name == "Interact collider")
@@ -352,13 +354,38 @@ namespace StarterAssets
 						int turnDirection;
 						turnDirection = (Mathf.FloorToInt(_input.turnMirror));
 
+						//make a new array of all the elements in currently selected array
 						GameObject[] mirrorListObj = hitObject.GetComponent<MirrorConsole>().mirrorList;
 
+						// for loop for every mirror in the list of the console
 						for(int mirrorNo = 0; mirrorNo < mirrorListObj.Length; mirrorNo++)
                         {
+							// apply the current direction to all elements in the array
 							mirrorListObj[mirrorNo].GetComponentInParent<MirrorRotation>().rotationNo -= turnDirection;
 						}
-					}
+					} else if (resetScript != null)
+                    {
+						// make a new array of all the elements in the currently selected array
+						GameObject[] puzzleObj = hitObject.GetComponent<ResetButton>().puzzleObjects;
+
+						// for loop for every object (mirror/dock) inside the array of the currently selected object
+						for(int puzzleObjNo = 0; puzzleObjNo < puzzleObj.Length; puzzleObjNo++)
+                        {
+							// if the element is a dock
+							if(puzzleObj[puzzleObjNo].gameObject.CompareTag("Dock"))
+                            {
+								// reset dock to 0 rotation
+								puzzleObj[puzzleObjNo].GetComponent<DockRotation>().rotationNo = 0;
+							}
+
+							// if the element is a mirror
+							if(puzzleObj[puzzleObjNo].gameObject.CompareTag("Mirror"))
+							{
+								// reset mirror to 0 rotation
+								puzzleObj[puzzleObjNo].GetComponent<MirrorRotation>().rotationNo = 0;
+							}
+						}
+                    }
                 }
 
 
