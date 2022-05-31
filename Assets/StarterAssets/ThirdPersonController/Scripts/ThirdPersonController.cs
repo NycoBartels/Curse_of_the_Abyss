@@ -333,6 +333,7 @@ namespace StarterAssets
 					Component consoleScript = hitObject.GetComponent<MirrorConsole>();
 					// get the reset script from the resetbutton currently selected
 					Component resetScript = hitObject.GetComponent<ResetButton>();
+					Component leverScript = hitObject.GetComponent<LeverInteract>();
 					if (mirrorScript != null)
                     {
                         if (hitObject.name == "Interact collider")
@@ -385,6 +386,8 @@ namespace StarterAssets
 								puzzleObj[puzzleObjNo].GetComponent<MirrorRotation>().rotationNo = 0;
 							}
 						}
+                    } else if (leverScript != null){
+						leverScript.GetComponent<LeverInteract>().RotateLever();
                     }
                 }
 
