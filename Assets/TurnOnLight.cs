@@ -34,6 +34,7 @@ public class TurnOnLight : MonoBehaviour
 
     public void TurnOn()
     {
+        print("helo work pls");
         turnedOn = true;
         lightIntensityInc = LightIntensity / ActivationTime;
     }

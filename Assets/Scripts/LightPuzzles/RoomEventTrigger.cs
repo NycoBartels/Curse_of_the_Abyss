@@ -37,15 +37,14 @@ public class RoomEventTrigger : MonoBehaviour
             foreach(Animator door in doorAnimator)
             {
                 door.SetBool("openDoor", true);
-                if(lights != null)
-                {
-                    foreach(GameObject light in lights)
-                    {
-                        light.GetComponent<TurnOnLight>().TurnOn();
-                    }
-                }
+                
             }
             
+        }
+        if (lights != null) {
+            foreach (GameObject light in lights) {
+                light.GetComponent<TurnOnLight>().TurnOn();
+            }
         }
     }
 }
