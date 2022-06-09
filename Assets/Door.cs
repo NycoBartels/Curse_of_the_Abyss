@@ -16,4 +16,14 @@ public class Door : MonoBehaviour
     {
         
     }
+
+    public void OpenDoor()
+    {
+        doorAnimator.SetBool("openDoor", true);
+    }
+
+    public void CloseDoor()
+    {
+        doorAnimator.SetBool("openDoor", false);
+    }
 }

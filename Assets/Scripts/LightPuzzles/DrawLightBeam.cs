@@ -110,7 +110,7 @@ public class DrawLightBeam : MonoBehaviour
         {
             trappedCurrentCheck = 0;
 
-            if (lastWallHit != hit.point) //If the ray does not hit the same spot on the wall AKA if something has moved
+            if (Vector3.Distance(lastWallHit, hit.point) > 0.1f) //If the ray does not hit the same spot on the wall AKA if something has moved
             {
                 //Clear the LineRenderers
                 RemoveLineRenderers();
