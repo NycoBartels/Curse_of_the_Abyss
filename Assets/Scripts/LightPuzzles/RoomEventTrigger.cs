@@ -11,7 +11,10 @@ public class RoomEventTrigger : MonoBehaviour
     private List<Transform> triggersList = new List<Transform>();
 
     [SerializeField]
-    Animator doorAnimator;
+    private List<Animator> doorAnimator = new List<Animator>();
+
+    [SerializeField]
+    private List<GameObject> lights = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -31,7 +34,18 @@ public class RoomEventTrigger : MonoBehaviour
 
         if (doorAnimator != null)
         {
-            doorAnimator.SetBool("openDoor", true);
+            foreach(Animator door in doorAnimator)
+            {
+                door.SetBool("openDoor", true);
+                if(lights != null)
+                {
+                    foreach(GameObject light in lights)
+                    {
+                        light.GetComponent<TurnOnLight>().TurnOn();
+                    }
+                }
+            }
+            
         }
     }
 }
