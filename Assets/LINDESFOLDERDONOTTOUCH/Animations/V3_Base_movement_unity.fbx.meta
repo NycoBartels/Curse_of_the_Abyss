@@ -1,44 +1,11 @@
 fileFormatVersion: 2
-guid: a3e66c283b88e394b8b8a0474bd32113
+guid: 3980bc501b2b8eb49bc56eb513e442b6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -7798361451791654531
-    second: gear|dockAction
-  - first:
-      74: -8422839121807772694
-    second: gear|gearAction
-  - first:
-      74: -1959704019898188676
-    second: gear|handleAction
-  - first:
-      74: -8615467582229002639
-    second: handle|dockAction
-  - first:
-      74: -1786747432444468035
-    second: handle|gearAction
-  - first:
-      74: 7680515969431857226
-    second: handle|handleAction
-  - first:
-      74: 4684043673750367278
-    second: dock|dockAction
-  - first:
-      74: 9184313618928632538
-    second: dock|gearAction
-  - first:
-      74: -1223382243263359485
-    second: dock|handleAction
-  - first:
-      74: -7789162837168507777
-    second: small base.001|dockAction
-  - first:
-      74: 3151908068910299837
-    second: small base.001|gearAction
-  - first:
-      74: -106559281651367686
-    second: small base.001|handleAction
+      74: -3880581976594992817
+    second: ArmatureAction
   externalObjects: {}
   materials:
     materialImportMode: 2
