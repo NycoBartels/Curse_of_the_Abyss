@@ -70,6 +70,7 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
+		private PlayerInventory _inventory;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -105,6 +106,7 @@ namespace StarterAssets
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
+			_inventory = GetComponent<PlayerInventory>();
 
 			AssignAnimationIDs();
 
@@ -121,6 +123,7 @@ namespace StarterAssets
 			GroundedCheck();
 			Move();
 			TurnMirror();
+			PickUp();
 			Escape();
 		}
 
@@ -395,6 +398,39 @@ namespace StarterAssets
 				_input.turnMirror = 0;
 			}
         }
+
+		private void PickUp ()
+        {
+			if (_input.pickUp)
+			{
+
+				RaycastHit hit;
+				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+				if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Interact")))
+				{
+					GameObject hitObject = hit.transform.gameObject;
+					Component crystalScript = hitObject.GetComponent<PickUpCrystal>();
+					Component dockScript = hitObject.GetComponent<DockBroken>();
+					if (crystalScript != null)
+					{
+						_inventory.crystalAmount++;
+						Destroy(crystalScript.gameObject);
+						GameObject.FindGameObjectWithTag("PickUI").SetActive(false);
+					}
+					else if (dockScript != null)
+					{
+						if (_inventory.crystalAmount >= 1 && hitObject.GetComponent<DockBroken>().isBroken == true)
+                        {
+							hitObject.GetComponent<DockBroken>().isBroken = false;
+							_inventory.crystalAmount--;
+							GameObject.FindGameObjectWithTag("PlaceUI").SetActive(false);
+						}
+					}
+				}
+			}
+			_input.pickUp = false;
+		}
 
 		private void Escape()
         {

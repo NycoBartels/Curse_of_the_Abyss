@@ -8,6 +8,9 @@ TagManager:
   - Mirror
   - Door Trigger
   - Dock
+  - InvUI
+  - PickUI
+  - PlaceUI
   layers:
   - Default
   - TransparentFX

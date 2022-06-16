@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool pickUp;
 		//public bool turnMirror;
 		public float turnMirror;
 		public bool escape;
@@ -42,6 +43,11 @@ namespace StarterAssets
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
+		}
+
+		public void OnPickUp(InputValue value)
+		{
+			PickUpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
@@ -79,6 +85,11 @@ namespace StarterAssets
 		public void JumpInput(bool newJumpState)
 		{
 			jump = newJumpState;
+		}
+
+		public void PickUpInput(bool newPickUpState)
+		{
+			pickUp = newPickUpState;
 		}
 
 		public void SprintInput(bool newSprintState)

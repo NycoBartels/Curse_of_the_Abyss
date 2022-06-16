@@ -8,7 +8,7 @@ public class DrawLightBeam : MonoBehaviour
     [SerializeField] private float lightReach;
     [SerializeField] private GameObject lineRenderer;
     [SerializeField] private int maxlineRenderers;
-    [SerializeField] private bool active = false;
+    public bool active = false;
     [SerializeField] private Material litupMaterial;
     [SerializeField] private Material originalMaterial;
 

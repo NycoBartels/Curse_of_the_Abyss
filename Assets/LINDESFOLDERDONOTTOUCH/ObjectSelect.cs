@@ -10,11 +10,19 @@ public class ObjectSelect : MonoBehaviour
     private GameObject lastObjectMirror;
     private GameObject lastObjectDock;
     private GameObject lastObjectConsole;
+    private GameObject lastObjectCrystal;
+    private GameObject pickUpUI;
+    private GameObject placeUI;
+    private PlayerInventory _inventory;
 
 
     void Start()
     {
-        
+        pickUpUI = GameObject.FindGameObjectWithTag("PickUI");
+        placeUI = GameObject.FindGameObjectWithTag("PlaceUI");
+        pickUpUI.SetActive(false);
+        placeUI.SetActive(false);
+        _inventory = GetComponent<PlayerInventory>();
     }
 
 
@@ -29,6 +37,7 @@ public class ObjectSelect : MonoBehaviour
             Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
             Component dockScript = hitObject.GetComponent<DockRotation>();
             Component consoleScript = hitObject.GetComponent<MirrorConsole>();
+            Component crystalScript = hitObject.GetComponent<PickUpCrystal>();
             if (mirrorScript != null && hitObject.name != "Side Blocks")
             {
                 hitObject.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = glow;
@@ -47,8 +56,16 @@ public class ObjectSelect : MonoBehaviour
             else if (dockScript != null)
             {
                 hitObject.transform.Find("handle").GetComponent<MeshRenderer>().material = glow;
+
+                if (hitObject.GetComponent<DockBroken>().isBroken == true && _inventory.crystalAmount >= 1)
+                {
+                    placeUI.SetActive(true);
+                }
+
                 lastObjectDock = hitObject;
-            } else if (consoleScript != null)
+
+            }
+            else if (consoleScript != null)
             {
                 hitObject.GetComponent<MeshRenderer>().material = glow;
                 lastObjectConsole = hitObject;
@@ -61,18 +78,27 @@ public class ObjectSelect : MonoBehaviour
                     mirrorListObj[mirrorNo].gameObject.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material = glow;
                 }
 
-            } else
+            }
+            else if (crystalScript != null)
             {
-                if(lastObjectDock != null)
+                hitObject.GetComponent<MeshRenderer>().material = glow;
+                pickUpUI.SetActive(true);
+                lastObjectCrystal = hitObject;
+            }
+
+            else
+            {
+                if (lastObjectDock != null)
                 {
                     lastObjectDock.transform.Find("handle").GetComponent<MeshRenderer>().material = dock;
+                    placeUI.SetActive(false);
                 }
-                if(lastObjectMirror != null)
+                if (lastObjectMirror != null)
                 {
                     lastObjectMirror.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = mirror;
                     lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
                 }
-                if(lastObjectConsole != null)
+                if (lastObjectConsole != null)
                 {
                     lastObjectConsole.GetComponent<MeshRenderer>().material = dock;
 
@@ -84,7 +110,12 @@ public class ObjectSelect : MonoBehaviour
                         mirrorListObj[mirrorNo].gameObject.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material = mirror;
                     }
                 }
-                
+                if (lastObjectCrystal != null)
+                {
+                    lastObjectCrystal.GetComponent<MeshRenderer>().material = mirror;
+                    pickUpUI.SetActive(false);
+                }
+
             }
         }
     }
