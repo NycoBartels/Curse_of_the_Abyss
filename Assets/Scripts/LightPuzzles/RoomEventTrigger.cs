@@ -16,6 +16,13 @@ public class RoomEventTrigger : MonoBehaviour
     [SerializeField]
     private List<GameObject> lights = new List<GameObject>();
 
+    AudioSource sound;
+
+    private void Start()
+    {
+        sound = GetComponent<AudioSource>();
+    }
+
     private void OnEnable()
     {
         DrawLightBeam.callPuzzleManager += AssessGameState;
@@ -37,7 +44,8 @@ public class RoomEventTrigger : MonoBehaviour
             foreach(Animator door in doorAnimator)
             {
                 door.SetBool("openDoor", true);
-                
+                PlayJingle();
+                //TO DO: play this only the first time the puzzle gets solved
             }
             
         }
@@ -47,4 +55,10 @@ public class RoomEventTrigger : MonoBehaviour
             }
         }
     }
+
+    public void PlayJingle()
+    {
+        sound.PlayDelayed(1f);
+    }
+
 }
