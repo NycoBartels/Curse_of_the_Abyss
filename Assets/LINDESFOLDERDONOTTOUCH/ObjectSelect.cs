@@ -29,20 +29,28 @@ public class ObjectSelect : MonoBehaviour
             Component mirrorScript = hitObject.GetComponentInParent<MirrorRotation>();
             Component dockScript = hitObject.GetComponent<DockRotation>();
             Component consoleScript = hitObject.GetComponent<MirrorConsole>();
+
             if (mirrorScript != null && hitObject.name != "Side Blocks")
             {
-                hitObject.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = glow;
-                hitObject.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = glow;
-                if (lastObjectMirror == null)
+                Transform objHandle = hitObject.transform.Find("mirror handle");
+                Transform objHandle2 = hitObject.transform.Find("mirror handle01");
+                if(objHandle != null && objHandle2 != null)
                 {
-                    lastObjectMirror = hitObject.gameObject;
+                    objHandle.GetComponent<MeshRenderer>().material = glow;
+                    objHandle2.GetComponent<MeshRenderer>().material = glow;
+
+                    if (lastObjectMirror == null)
+                    {
+                        lastObjectMirror = hitObject.gameObject;
+                    }
+                    else if (hitObject.gameObject != lastObjectMirror)
+                    {
+                        objHandle.GetComponent<MeshRenderer>().material = mirror;
+                        objHandle2.GetComponent<MeshRenderer>().material = mirror;
+                        lastObjectMirror = hitObject.gameObject;
+                    }
                 }
-                else if (hitObject.gameObject != lastObjectMirror)
-                {
-                    lastObjectMirror.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = mirror;
-                    lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
-                    lastObjectMirror = hitObject.gameObject;
-                }
+                
             }
             else if (dockScript != null)
             {

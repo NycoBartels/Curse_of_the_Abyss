@@ -17,23 +17,7 @@ public class DockRotation : MonoBehaviour
 
     void Update()
     {
-        /*
-        if(rotationNo != 0)
-        {
-            if(rotationNo > 0.5f)
-            {
-                anim.SetTrigger("TurnClockwise");
-                rotation++;
-                rotationNo = 0;
-                
-            } else
-            {
-                anim.SetTrigger("TurnCounterClockwise");
-                rotation--;
-                rotationNo = 0;
-            }
-        }
-        */
+        
         transform.eulerAngles = new Vector3(0, rotation * 45f, 0);
         
     }
