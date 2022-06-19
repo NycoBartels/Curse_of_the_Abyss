@@ -55,7 +55,12 @@ public class ObjectSelect : MonoBehaviour
             }
             else if (dockScript != null)
             {
-                hitObject.transform.Find("handle").GetComponent<MeshRenderer>().material = glow;
+                Transform dockMaybe = hitObject.transform.Find("Base/big metal thingy/handle");
+
+                if (dockMaybe != null)
+                {
+                    dockMaybe.GetComponent<MeshRenderer>().material = glow;
+                }
 
                 if (hitObject.GetComponent<DockBroken>().isBroken == true && _inventory.crystalAmount >= 1)
                 {
@@ -90,7 +95,7 @@ public class ObjectSelect : MonoBehaviour
             {
                 if (lastObjectDock != null)
                 {
-                    lastObjectDock.transform.Find("handle").GetComponent<MeshRenderer>().material = dock;
+                    lastObjectDock.transform.Find("Base/big metal thingy/handle").GetComponent<MeshRenderer>().material = dock;
                     placeUI.SetActive(false);
                 }
                 if (lastObjectMirror != null)
