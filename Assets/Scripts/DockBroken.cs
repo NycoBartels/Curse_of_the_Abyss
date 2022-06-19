@@ -5,12 +5,8 @@ using UnityEngine;
 public class DockBroken : MonoBehaviour
 {
     public bool isBroken;
-    private GameObject crystal;
+    [SerializeField] private GameObject crystal;
 
-    void Awake()
-    {
-        crystal = transform.Find("light dock/dock").gameObject;
-    }
     // Update is called once per frame
     void Update()
     {
