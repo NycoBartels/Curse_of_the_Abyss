@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBroken: 0
+  crystal: {fileID: 7309418546882217914}
 --- !u!1 &3692804518877016345
 GameObject:
   m_ObjectHideFlags: 0
