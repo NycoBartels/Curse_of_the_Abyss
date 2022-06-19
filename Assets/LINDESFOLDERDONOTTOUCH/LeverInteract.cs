@@ -57,4 +57,9 @@ public class LeverInteract : MonoBehaviour
         leverHandle.transform.rotation = endRotation;
     }
 
+
+    public bool IsLeverActive()
+    {
+        return leverActive;
+    }
 }
