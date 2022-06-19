@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32925031168638509}
   m_LocalRotation: {x: 0, y: 0, z: -0.0008726419, w: 0.99999964}
-  m_LocalPosition: {x: 0, y: 0.00000013332735, z: 1.0954094}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0954094}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 2016265877369476322}
@@ -472,7 +472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3616307978402971343}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -2.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1598932, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6348474894613044504}
@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 8508772968396192267}
   - component: {fileID: 9044001864848473665}
   - component: {fileID: 2743340989436984484}
+  - component: {fileID: 7479379034552948030}
   m_Layer: 8
   m_Name: Dock NAI
   m_TagString: Untagged
@@ -805,7 +806,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.0392456, y: 3, z: 1}
-  m_Center: {x: 0, y: -0.75, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &8508772968396192267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBroken: 0
+  crystal: {fileID: 8633016933954932348}
 --- !u!114 &2743340989436984484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,8 +853,28 @@ MonoBehaviour:
   active: 1
   litupMaterial: {fileID: 2100000, guid: 27c66eaaa6cd62a4fa0c66ff5addf97e, type: 2}
   originalMaterial: {fileID: 2100000, guid: b9b263221cc2fb140acbd244ae48966c, type: 2}
+  lightbeamOffset: 2
   selectedTriggers: []
   laserID: 0
+--- !u!95 &7479379034552948030
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668872036967632786}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ffc4360bcdb75b144b370260059c3f93, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8633016933954932348
 GameObject:
   m_ObjectHideFlags: 0

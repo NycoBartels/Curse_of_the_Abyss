@@ -11,6 +11,8 @@ public class DrawLightBeam : MonoBehaviour
     public bool active = false;
     [SerializeField] private Material litupMaterial;
     [SerializeField] private Material originalMaterial;
+    [SerializeField] private float lightbeamOffset;
+    private Vector3 originPosition;
 
     private (Vector3, Vector3) lightData;
     private Vector3 startPosition;
@@ -28,14 +30,17 @@ public class DrawLightBeam : MonoBehaviour
 
     private void Awake()
     {
-
+        
     }
 
     void Start()
     {
-        startPosition = transform.position;
+        originPosition = transform.position;
+        originPosition.y += lightbeamOffset;
 
-        lightData = ReflectBeam(transform.position + transform.forward * 0.075f, transform.forward);
+        startPosition = originPosition;
+
+        lightData = ReflectBeam(originPosition + transform.forward * 0.075f, transform.forward);
         //Creates initial raycast
         
     }
@@ -101,8 +106,8 @@ public class DrawLightBeam : MonoBehaviour
 
                 //Reset the ray to the dock.
                 //lastWallHit = hit.point;
-                startPosition = transform.position;
-                return (transform.position, transform.forward);
+                startPosition = originPosition;
+                return (originPosition, transform.forward);
             }
 
 
@@ -117,8 +122,8 @@ public class DrawLightBeam : MonoBehaviour
 
                 //Reset the ray to the dock.
                 lastWallHit = hit.point;
-                startPosition = transform.position;
-                return (transform.position, transform.forward);
+                startPosition = originPosition;
+                return (originPosition, transform.forward);
 
                 
             } else
@@ -126,8 +131,8 @@ public class DrawLightBeam : MonoBehaviour
                 //Cast a ray from the lightdock without drawing linerenderers
                 CreateLineRenderer(startPosition, hit.point);
 
-                startPosition = transform.position;
-                return (transform.position, transform.forward);
+                startPosition = originPosition;
+                return (originPosition, transform.forward);
 
 
             }
