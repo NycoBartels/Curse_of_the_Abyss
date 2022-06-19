@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e977f0a5e120dac49ae8eed06f80b55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: 0
   rotationNo: 0
 --- !u!33 &1366160811894465127
 MeshFilter:
