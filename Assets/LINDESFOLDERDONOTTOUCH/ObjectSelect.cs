@@ -46,8 +46,12 @@ public class ObjectSelect : MonoBehaviour
             }
             else if (dockScript != null)
             {
-                hitObject.transform.Find("handle").GetComponent<MeshRenderer>().material = glow;
-                lastObjectDock = hitObject;
+                Transform obj = hitObject.transform.Find("handle");
+                if (obj != null)
+                {
+                    obj.GetComponent<MeshRenderer>().material = glow;
+                    lastObjectDock = hitObject;
+                }
             } else if (consoleScript != null)
             {
                 hitObject.GetComponent<MeshRenderer>().material = glow;
