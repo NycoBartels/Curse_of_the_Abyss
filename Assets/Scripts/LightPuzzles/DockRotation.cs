@@ -31,16 +31,16 @@ public class DockRotation : MonoBehaviour
                 if (rotationNo > 0.5f)
                 {
                     anim.SetTrigger("TurnClockwise");
-                    yield return new WaitForSeconds(Time.deltaTime * 2);
-                    yield return new WaitForSeconds(0.6f);
+                    //yield return new WaitForSeconds(Time.deltaTime * 2);
+                    yield return new WaitForSeconds(0.75f);
                     rotationNo = 0;
                     rotation++;
                 }
                 else
                 {
                     anim.SetTrigger("TurnCounterClockwise");
-                    yield return new WaitForSeconds(Time.deltaTime * 2);
-                    yield return new WaitForSeconds(0.6f);
+                    //yield return new WaitForSeconds(Time.deltaTime * 2);
+                    yield return new WaitForSeconds(0.65f);
                     rotation--;
                     rotationNo = 0;
                 }

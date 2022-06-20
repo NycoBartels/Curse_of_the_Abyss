@@ -40,16 +40,27 @@ public class ObjectSelect : MonoBehaviour
             Component crystalScript = hitObject.GetComponent<PickUpCrystal>();
             if (mirrorScript != null && hitObject.name != "Side Blocks")
             {
-                hitObject.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = glow;
-                hitObject.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = glow;
+                Transform mirrorHandle1 = hitObject.transform.parent.Find("Armature/Bone/mirror handle.001");
+                Transform mirrorHandle2 = hitObject.transform.Find("mirror handle");
+
+                if (mirrorHandle1 != null)
+                {
+                    mirrorHandle1.GetComponent<MeshRenderer>().material = glow;
+                }
+                if (mirrorHandle2 != null)
+                {
+                    mirrorHandle2.GetComponent<MeshRenderer>().material = glow;
+                }
+
+
                 if (lastObjectMirror == null)
                 {
                     lastObjectMirror = hitObject.gameObject;
                 }
                 else if (hitObject.gameObject != lastObjectMirror)
                 {
-                    lastObjectMirror.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = mirror;
-                    lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
+                    lastObjectMirror.transform.parent.Find("Armature/Bone/mirror handle.001").GetComponent<MeshRenderer>().material = mirror;
+                    //lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
                     lastObjectMirror = hitObject.gameObject;
                 }
             }
@@ -79,8 +90,8 @@ public class ObjectSelect : MonoBehaviour
 
                 for (int mirrorNo = 0; mirrorNo < mirrorListObj.Length; mirrorNo++)
                 {
-                    mirrorListObj[mirrorNo].gameObject.transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().material = glow;
-                    mirrorListObj[mirrorNo].gameObject.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material = glow;
+                    mirrorListObj[mirrorNo].gameObject.transform.parent.Find("Armature/Bone/mirror handle.001").GetComponent<MeshRenderer>().material = glow;
+                    //mirrorListObj[mirrorNo].gameObject.transform.GetChild(0).GetChild(1).GetComponent<MeshRenderer>().material = glow;
                 }
 
             }
@@ -100,8 +111,17 @@ public class ObjectSelect : MonoBehaviour
                 }
                 if (lastObjectMirror != null)
                 {
-                    lastObjectMirror.transform.Find("mirror handle").GetComponent<MeshRenderer>().material = mirror;
-                    lastObjectMirror.transform.Find("mirror handle01").GetComponent<MeshRenderer>().material = mirror;
+                    Transform mirrorHandle1 = lastObjectMirror.transform.parent.Find("Armature/Bone/mirror handle.001");
+                    Transform mirrorHandle2 = lastObjectMirror.transform.Find("mirror handle");
+
+                    if (mirrorHandle1 != null)
+                    {
+                        mirrorHandle1.GetComponent<MeshRenderer>().material = mirror;
+                    }
+                    if (mirrorHandle2 != null)
+                    {
+                        mirrorHandle2.GetComponent<MeshRenderer>().material = mirror;
+                    }
                 }
                 if (lastObjectConsole != null)
                 {
