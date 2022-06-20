@@ -10691,7 +10691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
+  MoveSpeed: 3
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -10704,10 +10704,10 @@ MonoBehaviour:
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 1
   CinemachineCameraTarget: {fileID: 3980270076880281833}
   TopClamp: 70
-  BottomClamp: -30
+  BottomClamp: -60
   CameraAngleOverride: 0
   LockCameraPosition: 0
 --- !u!114 &1525232525765440322
@@ -10743,6 +10743,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  pickUp: 0
   turnMirror: 0
   escape: 0
   analogMovement: 0
@@ -10760,9 +10761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64310dcb82bb6d24aae9b8d07afbf844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glow: {fileID: 2100000, guid: 81a6430ae01cc7343a52a769a1bad34b, type: 2}
-  mirror: {fileID: 2100000, guid: 9c946fda0ea2b3248a7c4236483df09c, type: 2}
-  dock: {fileID: 2100000, guid: 901274930d8e1854c975777e12c3f4cf, type: 2}
+  glow: {fileID: 2100000, guid: 4c3fe02772850dc4eadadfad13011407, type: 2}
+  mirror: {fileID: 2100000, guid: b6ed244ff93002b41b95a6b855f63365, type: 2}
+  dock: {fileID: 2100000, guid: b6ed244ff93002b41b95a6b855f63365, type: 2}
+  buttonPressHint: {fileID: 0}
 --- !u!114 &8776066234918967742
 MonoBehaviour:
   m_ObjectHideFlags: 0
