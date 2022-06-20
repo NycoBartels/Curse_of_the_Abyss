@@ -349,6 +349,8 @@ GameObject:
   - component: {fileID: 501890095931206030}
   - component: {fileID: 5298859511427506828}
   - component: {fileID: 5838195277338872763}
+  - component: {fileID: 9123099205458604248}
+  - component: {fileID: 2517298611267747076}
   m_Layer: 0
   m_Name: mirror handle.001
   m_TagString: Untagged
@@ -419,6 +421,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9123099205458604248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535214600070434454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.404211, y: 136.2301, z: 17.208641}
+  m_Center: {x: 69.84, y: 271.6, z: -0.0109074}
+--- !u!65 &2517298611267747076
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535214600070434454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.404211, y: 136.2301, z: 17.208641}
+  m_Center: {x: -69.8, y: 271.6, z: -0.0109074}
 --- !u!1 &5501263468345478524
 GameObject:
   m_ObjectHideFlags: 0
