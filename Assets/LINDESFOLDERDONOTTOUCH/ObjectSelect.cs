@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ObjectSelect : MonoBehaviour
 {
     [SerializeField] private Material glow;
     [SerializeField] private Material mirror;
     [SerializeField] private Material dock;
+    [SerializeField] private GameObject buttonPressHint;
     private GameObject lastObjectMirror;
     private GameObject lastObjectDock;
     private GameObject lastObjectConsole;
@@ -14,6 +16,9 @@ public class ObjectSelect : MonoBehaviour
     private GameObject pickUpUI;
     private GameObject placeUI;
     private PlayerInventory _inventory;
+
+    private bool firstTimeLooked = false;
+    private float buttenHintAlpha;
 
 
     void Start()
@@ -40,6 +45,8 @@ public class ObjectSelect : MonoBehaviour
             Component crystalScript = hitObject.GetComponent<PickUpCrystal>();
             if (mirrorScript != null && hitObject.name != "Side Blocks")
             {
+                FirstTimeLook();
+
                 Transform mirrorHandle1 = hitObject.transform.parent.Find("Armature/Bone/mirror handle.001");
                 Transform mirrorHandle2 = hitObject.transform.Find("mirror handle");
 
@@ -66,6 +73,8 @@ public class ObjectSelect : MonoBehaviour
             }
             else if (dockScript != null)
             {
+                FirstTimeLook();
+
                 Transform dockMaybe = hitObject.transform.Find("Base/big metal thingy/handle");
 
                 if (dockMaybe != null)
@@ -144,4 +153,54 @@ public class ObjectSelect : MonoBehaviour
             }
         }
     }
+
+    private void FirstTimeLook()
+    {
+        if (!firstTimeLooked)
+        {
+            StartCoroutine(DisplayHint());
+
+            firstTimeLooked = true;
+        }
+    }
+
+    IEnumerator DisplayHint()
+    {
+        bool displayActive = false;
+        Color newColor = buttonPressHint.GetComponent<TextMeshProUGUI>().color;
+        newColor.a = 0;
+
+        while (!displayActive)
+        {
+            newColor.a += 0.01f;
+            buttonPressHint.GetComponent<TextMeshProUGUI>().color = newColor;
+
+            if (newColor.a > 0.45f)
+            {
+                newColor.a = 0.5f;
+                displayActive = true;
+            }
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        while (displayActive)
+        {
+            newColor.a -= 0.01f;
+            buttonPressHint.GetComponent<TextMeshProUGUI>().color = newColor;
+
+            if (newColor.a == 0)
+            {
+                displayActive = false;
+            }
+
+            yield return null;
+        }
+
+        yield return null;
+
+    }
+
 }
