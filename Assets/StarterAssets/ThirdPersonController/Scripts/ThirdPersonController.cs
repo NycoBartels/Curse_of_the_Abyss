@@ -111,6 +111,8 @@ namespace StarterAssets
 			_inventory = GetComponent<PlayerInventory>();
 			_pauseScreen = GameObject.FindGameObjectWithTag("PauseScreen");
 			_pauseScreen.SetActive(false);
+			Cursor.lockState = CursorLockMode.Confined;
+			Cursor.visible = false;
 
 			AssignAnimationIDs();
 
