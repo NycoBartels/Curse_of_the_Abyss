@@ -853,7 +853,7 @@ MonoBehaviour:
   active: 1
   litupMaterial: {fileID: 2100000, guid: 27c66eaaa6cd62a4fa0c66ff5addf97e, type: 2}
   originalMaterial: {fileID: 2100000, guid: b9b263221cc2fb140acbd244ae48966c, type: 2}
-  lightbeamOffset: 2
+  lightbeamOffset: 2.5
   selectedTriggers: []
   laserID: 0
 --- !u!95 &7479379034552948030
