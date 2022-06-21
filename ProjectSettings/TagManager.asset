@@ -11,6 +11,7 @@ TagManager:
   - InvUI
   - PickUI
   - PlaceUI
+  - PauseScreen
   layers:
   - Default
   - TransparentFX

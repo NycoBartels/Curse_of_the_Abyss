@@ -71,6 +71,8 @@ namespace StarterAssets
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
 		private PlayerInventory _inventory;
+		private GameObject _pauseScreen;
+		private bool _gamePaused = false;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -107,6 +109,8 @@ namespace StarterAssets
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_inventory = GetComponent<PlayerInventory>();
+			_pauseScreen = GameObject.FindGameObjectWithTag("PauseScreen");
+			_pauseScreen.SetActive(false);
 
 			AssignAnimationIDs();
 
@@ -436,7 +440,21 @@ namespace StarterAssets
         {
             if (_input.escape)
             {
-				Application.Quit();
+				if(!_gamePaused)
+                {
+					_pauseScreen.SetActive(true);
+					_gamePaused = true;
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
+					Time.timeScale = 0;
+				} else
+                {
+					_pauseScreen.SetActive(false);
+					_gamePaused = false;
+					Cursor.lockState = CursorLockMode.Confined;
+					Cursor.visible = false;
+					Time.timeScale = 1;
+				}
             }
 
 			_input.escape = false;
