@@ -105,6 +105,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			Time.timeScale = 1;
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
